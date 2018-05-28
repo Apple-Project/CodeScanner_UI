@@ -27,12 +27,28 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/activity_horizontal_margin"
-        android:text="disply" />
+        android:text="Display" />
 
     <TextView
         android:id="@+id/content"
         android:gravity="center"
         android:padding="@dimen/activity_horizontal_margin"
+        android:text="Code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/timestamp"
+        android:gravity="center"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="Time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/location"
+        android:gravity="center"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="Location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -14,10 +14,17 @@ import android.widget.EditText;
 
 import com.google.zxing.Result;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler{
     private ZXingScannerView scannerView;
+    private Calendar calendar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +53,14 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     @Override
     public void handleResult(Result rawResult) {
         final String scan_Result = rawResult.getText();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        calendar = Calendar.getInstance();
+        String currentDateTimeString = formatter.format(calendar.getTime());
         //Call back data to main activity
         final Intent intent = new Intent();
         intent.putExtra(MainActivity.FORMAT, rawResult.getBarcodeFormat().toString());
         intent.putExtra(MainActivity.CONTENT, rawResult.getText());
+        intent.putExtra(MainActivity.TIMESTAMP, currentDateTimeString);
 
 
         // get prompts.xml view
@@ -82,11 +93,12 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
                                 // get user input and set it to result
                                 // edit text
                                 Log.d("onrResume", " "+userInput.getText());
-
+                                intent.putExtra(MainActivity.LOCATION, userInput.getText());
+                                Log.d("onrResume", "saved "+userInput.getText());
                                 setResult(Activity.RESULT_OK, intent);
                                 finish();
-                                //scannerView.stopCamera();
-                                //Toast.makeText(getApplicationContext(), "Permission Denied, You cannot access camera", Toast.LENGTH_LONG).show();
+                                Log.d("onrResume", "finished "+userInput.getText());
+
                             }
                         })
                 .setNegativeButton("Cancel",
@@ -94,6 +106,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 dialog.cancel();
+
                             }
                         });
 
