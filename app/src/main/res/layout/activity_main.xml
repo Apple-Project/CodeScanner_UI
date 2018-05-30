@@ -21,6 +21,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/store_data"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:onClick="panicButton"
+            android:text="PANIC"
+            android:textStyle="bold"
+            android:background="@color/red"/>
+    </RelativeLayout>
     <TextView
         android:id="@+id/format"
         android:layout_width="match_parent"
